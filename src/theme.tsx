@@ -49,7 +49,13 @@ export class ThemePlugin<ThemeType, R, T> implements PostProcessPlugin<R, T>, Co
       return new StyledPlugin<R, T>(this.sheet(themedStyle).classes);
     }
 
+    const themeClasses = (themedStyle: ThemedStyle<ThemeType>) => {
+      this.add(themedStyle);
+      return this.sheet(themedStyle).classes;
+    }
+
     extra.themeStyled = themeStyled;
+    extra.themeClasses = themeClasses;
 
     return () => {};
   }

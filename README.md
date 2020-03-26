@@ -46,6 +46,7 @@ export function MyComp(_, renderer) {
   return <div class={classes.div}>Halo!</div>      // --> use those classes
 }
 ```
+[► TRY IT!](https://stackblitz.com/edit/connective-html-jss-theme?file=index.tsx)
 
 In your component, you can also use `this.theme.styled()` rendering plugin to automatically
 style any rendered element with css classes with the same tag name:
@@ -77,6 +78,7 @@ const DarkTheme = theme({                          // --> define your theme
 compile(renderer => <MyComp/>, DarkTheme)          // --> tell `compile()` to plug your theme
 .save('dist/index.html');
 ```
+[► TRY IT!](https://codesandbox.io/s/connective-jss-theme-example-n7znj)
 
 ### Prefetching Component Styles
 

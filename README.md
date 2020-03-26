@@ -1,4 +1,4 @@
-# JSS Themes
+# JSS Themes for CONNECTIVE HTML
 Static themes for [CONNECTIVE HTML](https://github.com/CONNECT-platform/connective-html)-based frontends using [JSS](https://cssinjs.org/?v=v10.1.1).
 
 ## Installation

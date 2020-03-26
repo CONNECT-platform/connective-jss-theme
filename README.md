@@ -9,51 +9,44 @@ npm i @connectv/jss-theme
 
 ## Usage
 
-### Basic Examples:
+### Basic Example (Client Side):
 
 ```tsx
-// component.tsx
+// index.tsx
+import { theme } from '@connectv/jss-theme';
+import { Renderer } from '@connectv/html';
 
+import { MyComp, MyCompStyle } from './component';
+
+
+const DarkTheme = theme({                          // --> define your theme
+  bgcolor: 'black',
+  textcolor: 'red'
+})
+.add(MyCompStyle);                                 // --> add component styles to your theme
+
+const renderer = new Renderer().plug(DarkTheme);   // --> plug the theme into your renderer
+renderer.render(DarkTheme.styleElement())
+        .on(document.body);                        // --> render the stylesheets
+renderer.render(<MyComp/>).on(document.body);      // --> render your content
+```
+In your component code:
+```tsx
+// component.tsx
 import { themedStyle, ThemedComponentThis } from '@connectv/jss-theme';
 
-
-//
-// --> define your themed style, which is a style sheet that is resolved based on
-// --- some theme:
-//
-export const MyStyle = themedStyle(theme => {
+export const MyCompStyle = themedStyle(theme => ({
   div: {
     background: theme.bgcolor,
     color: theme.textcolor,
     padding: '8px',
-    'border-radius': '3px'
+    border-radius: '3px'
   }
-});
+}));
 
 export function MyComp(this: ThemedComponentThis, _, renderer) {
-  const classes = this.themeClasses(MyStyle);
+  const classes = this.theme.classes(MyCompStyle);
 
   return <div class={classes.div}>Halo!</div>
 }
 ```
-
-```tsx
-// index.tsx
-import { Renderer } from '@connectv/html';
-import { theme } from '@connectv/jss-theme';
-
-import { MyStyle, MyComp } from './component';
-
-
-const MyTheme = theme({                                    // --> define the theme
-  bgcolor: 'black',
-  textcolor: 'red'
-})
-.add(MyStyle);                                             // --> add your component styles
-
-const renderer = new Renderer().plug(MyTheme);             // --> plug the theme in your renderer
-
-renderer.render(MyTheme.styleElement()).on(document.body); // --> render the styles
-renderer.render(<MyComp/>).on(document.body);              // --> render your components
-```
-

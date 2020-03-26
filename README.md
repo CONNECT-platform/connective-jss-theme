@@ -18,7 +18,7 @@ import { themedStyle, ThemedComponentThis } from '@connectv/jss-theme';
 
 
 //
-// --> step 1: define your themed style, which is a style sheet that is resolved based on
+// --> define your themed style, which is a style sheet that is resolved based on
 // --- some theme:
 //
 export const MyStyle = themedStyle(theme => {

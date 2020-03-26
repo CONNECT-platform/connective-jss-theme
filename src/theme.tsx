@@ -1,6 +1,6 @@
 import { SheetsRegistry, StyleSheet } from 'jss';
 import { PostProcessPlugin } from '@connectv/sdh/transport';
-import { CompProcessPlugin, PluginPriority, StyledPlugin, RendererLike } from '@connectv/html';
+import { CompProcessPlugin, PluginPriority, RendererLike, styled } from '@connectv/html';
 
 import { ThemedStyle } from './themed-style';
 
@@ -25,7 +25,16 @@ export class ThemePlugin<ThemeType, R, T> implements PostProcessPlugin<R, T>, Co
   }
 
   sheet(themedStyle: ThemedStyle<ThemeType>) {
+    this.add(themedStyle);
     return this.sheets[themedStyle.id];
+  }
+
+  classes(themedStyle: ThemedStyle<ThemeType>) {
+    return this.sheet(themedStyle).classes;
+  }
+
+  styled(themedStyle: ThemedStyle<ThemeType>) {
+    return styled(this.classes(themedStyle));
   }
 
   post(html: HTMLDocument): void | Promise<void> {
@@ -44,18 +53,7 @@ export class ThemePlugin<ThemeType, R, T> implements PostProcessPlugin<R, T>, Co
     ___: unknown, 
     extra: { [name: string]: any; }): (result: Node) => void {
 
-    const themeStyled = (themedStyle: ThemedStyle<ThemeType>) => {
-      this.add(themedStyle);
-      return new StyledPlugin<R, T>(this.sheet(themedStyle).classes);
-    }
-
-    const themeClasses = (themedStyle: ThemedStyle<ThemeType>) => {
-      this.add(themedStyle);
-      return this.sheet(themedStyle).classes;
-    }
-
-    extra.themeStyled = themeStyled;
-    extra.themeClasses = themeClasses;
+    extra.theme = this;
 
     return () => {};
   }

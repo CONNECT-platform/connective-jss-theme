@@ -1,13 +1,9 @@
-import { ComponentThis, StyledPlugin, SafeComponentThis } from '@connectv/html';
-
-import { ThemedStyle } from './themed-style';
-
-
-type _ThemedComponentThis = {
-  themeStyled: <ThemeType, R, T>(style: ThemedStyle<ThemeType>) => StyledPlugin<R, T>;
-  themeClasses: <ThemeType>(style: ThemedStyle<ThemeType>) => {[name: string]: string};
-}
+import { ComponentThis } from '@connectv/html';
+import { ThemePlugin } from './theme';
 
 
-export type ThemedComponentThis = ComponentThis & _ThemedComponentThis;
-export type SafeThemedComponentThis = SafeComponentThis & _ThemedComponentThis | SafeComponentThis;
+export type ThemedComponentThis<ThemeType=any, R=any, T=any> = ComponentThis & {
+  theme: ThemePlugin<ThemeType, R, T>;
+};
+
+export type SafeThemedComponentThis<ThemeType, R, T> = Partial<ThemedComponentThis<ThemeType, R, T>>;

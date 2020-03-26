@@ -14,8 +14,8 @@ export const style = themedStyle(theme => ({
 
 
 export function Comp(this: ThemedComponentThis, _: any, renderer: any) {
-  renderer = renderer.plug(this.themeStyled(style));
-  const classes = this.themeClasses(style);
+  renderer = renderer.plug(this.theme.styled(style));
+  const classes = this.theme.classes(style);
 
   return <div>
     Hellow!

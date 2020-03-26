@@ -7,6 +7,5 @@ const darkTheme = theme({
   bg: 'black'
 });
 
-
 compile(renderer => <Comp/>, darkTheme)
 .save('dist/index.html');

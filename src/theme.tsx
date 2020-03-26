@@ -1,6 +1,6 @@
 import { SheetsRegistry, StyleSheet } from 'jss';
 import { PostProcessPlugin } from '@connectv/sdh/transport';
-import { CompProcessPlugin, PluginPriority, RendererLike, styled } from '@connectv/html';
+import { CompProcessPlugin, PluginPriority, styled } from '@connectv/html';
 
 import { ThemedStyle } from './themed-style';
 
@@ -18,6 +18,8 @@ export class ThemePlugin<ThemeType, R, T> implements PostProcessPlugin<R, T>, Co
     if (!(themedStyle.id in this.themedStyles)) {
       this.themedStyles[themedStyle.id] = themedStyle;
       const sheet = this.sheets[themedStyle.id] = themedStyle.styleSheet(this.theme);
+
+      sheet.attach();
       this.registry.add(sheet);
     }
 
@@ -40,11 +42,7 @@ export class ThemePlugin<ThemeType, R, T> implements PostProcessPlugin<R, T>, Co
   post(html: HTMLDocument): void | Promise<void> {
     const el = html.createElement('style');
     el.innerHTML = this.registry.toString();
-    html.body.append(el);
-  }
-
-  styleElement() {
-    return (renderer: RendererLike<R, T>) => <style>{this.registry.toString()}</style>;
+    html.head.append(el);
   }
 
   prepare(

@@ -1,4 +1,4 @@
-import jss, { Styles } from 'jss';
+import jss, { Styles, StyleSheet } from 'jss';
 import { autoId } from '@connectv/html';
 
 
@@ -16,7 +16,7 @@ export class ThemedStyle<ThemeType> {
     return this.factory(theme);
   }
 
-  styleSheet(theme: any) {
+  styleSheet(theme: any): StyleSheet {
     return jss.createStyleSheet(this.style(theme));
   }
 }

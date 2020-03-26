@@ -37,7 +37,7 @@ export const MyCompStyle = themedStyle(theme => ({ // --> define your theme-base
     background: theme.bgcolor,
     color: theme.textcolor,
     padding: '8px',
-    border-radius: '3px'
+    'border-radius': '3px'
   }
 }));
 

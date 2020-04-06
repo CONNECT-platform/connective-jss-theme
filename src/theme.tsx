@@ -18,7 +18,7 @@ export class ThemePlugin<ThemeType, R, T> implements PostProcessPlugin<R, T>, Co
 
   private themedStyles: {[id: string]: ThemedStyle<ThemeType>} = {};
   private sheets: {[id: string]: StyleSheet} = {};
-  private registry = new SheetsRegistry();
+  readonly registry = new SheetsRegistry();
 
   /**
    *

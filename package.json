@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/CONNECT-platform/connective-jss-theme#readme",
   "dependencies": {
-    "@connectv/html": "^0.2.1",
+    "@connectv/html": "^0.2.5",
     "@connectv/sdh": "^0.2.6",
     "jss": "^10.1.1",
     "rxline": "^0.9.2"

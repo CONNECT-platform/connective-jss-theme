@@ -1,5 +1,6 @@
 import { compile } from '@connectv/sdh';
-import { theme, externalSheet } from '../src';
+import { theme } from '../src/';
+import { externalSheet } from '../src/external-sheet';
 import { Comp } from './comp';
 
 

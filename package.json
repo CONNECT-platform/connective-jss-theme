@@ -1,6 +1,6 @@
 {
   "name": "@connectv/jss-theme",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "jss-based themes for connective html",
   "main": "dist/es5/index.js",
   "module": "dist/es6/index.js",
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/CONNECT-platform/connective-jss-theme#readme",
   "dependencies": {
     "@connectv/html": "^0.2.6",
-    "@connectv/sdh": "^0.2.8",
+    "@connectv/sdh": "^0.3.0",
     "jss": "^10.1.1",
     "rxline": "^0.9.2"
   },
